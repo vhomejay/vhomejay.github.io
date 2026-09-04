@@ -3,8 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="vhomejay — Video Editor Showreel / 魏宏捷 视频剪辑作品集">
-<title>vhomejay — SHOWREEL</title>
+<meta name="description" content="Video Editor Showreel / 魏宏捷 视频剪辑作品集">
+<title>SHOWREEL — 魏宏捷</title>
+<style>
+  :root{
+    --bg:#07080d;
+    --panel:#0b0d16;
+    --card:#0f1120;
+    --line:#232748;
+    --text:#f2f2f0;
+    --muted:#8389a8;
+    --dim:#4c5170;
+    --accent:#6a5cff;        /* indigo */
+    --accent2:#2ee0ff;       /* cyan */
+    --display:"Didot","Bodoni 72","Playfair Display",Georgia,"Times New Roman",serif;
+    --mono:"SF Mono","JetBrains Mono",Consolas,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--sans);line-height:1.4;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent2);color:#000}
+  a{color:inherit;text-decoration:none}
+  img,video{display:block;max-width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+  .mono{font-family:var(--mono)}
+  .outline{color:transparent;-webkit-text-stroke:1px rgba(242,242,240,.55)}
+  .accent{color:var(--accent)}
+
+  body::before{
+    content:"";position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  }
+
+  /* ============ NAV ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:20px 0;mix-blend-mode:difference;color:#fff}
+  .nav-in{display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.5px}
+  .nav-logo i{color:var(--accent);font-style:normal}
+  .nav-right{display:flex;gap:26px;font-family:var(--mono);font-size:12px;letter-spacing:2px}
+  .nav-right a{opacity:.8;transition:.2s}
+  .nav-right a:hover{opacity:1}
+  @media(max-width:720px){.nav-right{display:none}}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:110px 0 0;overflow:hidden}
+  .hero .bg-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(ellipse 55% 42% at 12% 22%, rgba(106,92,255,.22), transparent 62%),
+      radial-gradient(ellipse 45% 38% at 88% 72%, rgba(46,224,255,.14), transparent 60%),
+      linear-gradient(180deg,#07080d,#0b0d1a 55%,#07080d 100%);}
+  .hero .bg-number{position:absolute;top:-6vw;right:-2vw;z-index:0;
+    font-family:var(--display);font-weight:800;font-size:clamp(220px,38vw,620px);line-height:1;
+    color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);user-select:none;pointer-events:none}
+  .hero-eyebrow{position:relative;z-index:2;display:flex;align-items:center;gap:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:3px;color:var(--muted);margin-bottom:26px}
+  .hero-eyebrow::before{content:"";width:52px;height:2px;background:var(--accent)}
+  .hero-eyebrow b{color:var(--accent2);font-weight:700}
+  .hero-title{position:relative;z-index:2;font-family:var(--display);
+    font-size:clamp(64px,14vw,216px);font-weight:800;line-height:.92;letter-spacing:-.02em}
+  .hero-title .cn{font-style:italic}
+  .hero-title .dot{color:var(--accent);-webkit-text-stroke:0}
+  .hero-sub{position:relative;z-index:2;margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+  .hero-sub .role{font-size:clamp(18px,3vw,30px);font-weight:600;letter-spacing:-.01em}
+  .hero-sub .role em{font-style:normal;color:var(--muted);font-family:var(--mono);font-size:.55em;letter-spacing:2px}
+  .hero-sub .tag{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:8px 16px}
+  .hero-desc{position:relative;z-index:2;max-width:820px;margin-top:24px;color:var(--muted);font-size:14.5px}
+  .hero-desc b{color:var(--text)}
+  .hero-cta{position:relative;z-index:2;display:flex;gap:16px;align-items:center;margin:36px 0 64px}
+  .hero-cta .btn-play{width:74px;height:74px;border-radius:50%;border:1px solid var(--text);
+    display:flex;align-items:center;justify-content:center;font-size:20px;transition:.25s}
+  .hero-cta .btn-play:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1.06)}
+  .hero-cta .scroll{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--dim);animation:floaty 2.2s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  @media(max-width:760px){
+    .hero-cta{margin-bottom:46px}
+  }
+
+  /* ============ SECTION HEAD ============ */
+  section{padding:clamp(80px,10vw,150px) 0}
+  .sec-head{display:flex;align-items:center;gap:22px;margin-bottom:clamp(40px,6vw,70px)}
+  .sec-idx{font-family:var(--mono);font-size:12px;letter-spacing:3px;color:var(--accent);transform:rotate(-90deg)}
+  .sec-title{font-family:var(--display);font-weight:800;font-size:clamp(46px,8vw,120px);line-height:.9;letter-spacing:-.02em}
+  .sec-title .ghost{color:transparent;-webkit-text-stroke:1px rgba(242,242,240,.35);font-style:italic}
+  .sec-line{flex:1;height:1px;background:var(--line)}
+
+  /* ============ STUDIO / WORKS ============ */
+  .studios{display:flex;flex-direction:column;gap:clamp(70px,10vw,130px)}
+  .studio{position:relative}
+  .studio-head{
+    display:grid;grid-template-columns:auto 1fr;column-gap:clamp(18px,3vw,44px);
+    align-items:end;padding-bottom:clamp(24px,3.4vw,44px);border-bottom:1px solid var(--line);
+  }
+  .studio-idx{font-family:var(--mono);font-size:12px;letter-spacing:3px;color:var(--accent2);
+    writing-mode:vertical-rl;transform:rotate(180deg);grid-row:1;grid-column:1;height:min-content}
+  .studio-titles{grid-column:2;grid-row:1}
+  .studio-name{font-family:var(--display);font-weight:800;font-size:clamp(34px,5.4vw,84px);line-height:.95;letter-spacing:-.02em}
+  .studio-name em{font-style:italic;color:var(--accent)}
+  .studio-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px;
+    font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--muted)}
+  .studio-meta .pos{color:var(--accent2)}
+  .set{margin-top:clamp(40px,6vw,72px)}
+  .set-head{display:flex;align-items:baseline;gap:16px;margin-bottom:24px}
+  .set-head .set-no{font-family:var(--display);font-style:italic;font-weight:700;color:var(--accent);
+    font-size:clamp(22px,2.6vw,34px)}
+  .set-head h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.8vw,40px);letter-spacing:-.01em}
+  .set-head .set-count{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--dim);white-space:nowrap}
+  .work-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,22px)}
+  .wcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative}
+  .wcard:hover{transform:translateY(-5px);border-color:#3a3f8f;box-shadow:0 22px 60px rgba(60,40,220,.18)}
+  .video-shell{position:relative;width:min(85%,560px);margin:0 auto;background:#05060c;overflow:hidden;cursor:pointer}
+  .video-shell::before{content:"";display:block;padding-top:177.78%}
+  .video-shell video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .vplace{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;padding:16px;
+    background:linear-gradient(180deg,rgba(7,8,13,.02) 42%,rgba(7,8,13,.58) 74%,rgba(7,8,13,.94) 100%),var(--vbg,#141232) center/cover no-repeat;transition:opacity .3s}
+  .vplace.hidden{opacity:0;pointer-events:none}
+  .vplace .play{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:18px;color:#000;background:var(--accent2);box-shadow:0 0 30px rgba(46,224,255,.45);transition:.25s}
+  .vplace:hover .play{transform:scale(1.12)}
+  .vplace .pending{font-family:var(--mono);font-size:9.5px;letter-spacing:1.5px;color:var(--dim);writing-mode:vertical-rl;text-align:right}
+  .vplace .pending b{color:var(--muted)}
+  .video-shell .pbtn{position:absolute;right:12px;bottom:12px;z-index:3;width:46px;height:46px;border-radius:50%;
+    background:rgba(5,7,15,.68);border:1px solid rgba(46,224,255,.28);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .video-shell.live .pbtn{opacity:1;pointer-events:auto}
+  .video-shell.live .pbtn:hover{transform:scale(1.1);border-color:rgba(46,224,255,.7)}
+  .video-shell .pbtn .bar{width:4px;height:16px;background:var(--accent2);margin:0 2px;border-radius:1px}
+  .video-shell .pbtn.play .bar{display:none}
+  .video-shell .pbtn.play::after{content:"";margin-left:5px;border-left:15px solid var(--accent2);border-top:9px solid transparent;border-bottom:9px solid transparent}
+  .wcard-body{position:relative;padding:16px 16px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .wcard-num{position:absolute;top:12px;right:14px;font-family:var(--display);font-weight:800;
+    font-size:44px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(106,92,255,.55);user-select:none}
+  .wcard-body .kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:2.2px;color:var(--accent2)}
+  .wcard-body h4{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.5vw,26px);line-height:1.12;
+    letter-spacing:-.01em;padding-right:34px;margin-top:1px}
+  .wcard-body h4 em{font-style:italic;color:var(--accent)}
+  .wcard-body p{font-size:12px;color:var(--muted);line-height:1.5}
+  .wcard-body .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+  .wcard-body .tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:.4px;color:var(--text);
+    border:1px solid var(--line);border-radius:5px;padding:3px 7px;background:rgba(255,255,255,.02)}
+  .wcard-body .tags span.hot{color:#000;background:var(--accent2);border-color:var(--accent2);font-weight:700}
+  @media(max-width:1180px){
+    .work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:760px){
+    .work-grid{grid-template-columns:1fr}
+    .studio-name{font-size:clamp(30px,8vw,56px)}
+  }
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Video Editor Showreel / 魏宏捷 视频剪辑作品集">
+<title>SHOWREEL — 魏宏捷</title>
 <style>
   :root{
     --bg:#07080d;
@@ -219,7 +376,7 @@
 <!-- NAV -->
 <nav>
   <div class="wrap nav-in">
-    <div class="nav-logo">vhomejay<i>_</i></div>
+    <div class="nav-logo">魏宏捷<i>_</i></div>
     <div class="nav-right">
       <a href="#works">WORKS</a>
       <a href="#experience">CV</a>
@@ -237,7 +394,7 @@
     <div class="hero-eyebrow">SHOWREEL — 编导运营剪辑 · IP 操盘手</div>
     <h1 class="hero-title"><span class="cn">魏宏捷</span><span class="dot">.</span></h1>
     <div class="hero-sub">
-      <div class="role">vhomejay <em>/&nbsp;EDIT&nbsp;THE&nbsp;STORY</em></div>
+      <div class="role">EDIT&nbsp;THE&nbsp;STORY</div>
       <span class="tag">短视频剪辑 · 内容运营</span>
     </div>
     <p class="hero-desc">
@@ -586,7 +743,6 @@
     </div>
     <div class="contact-mail"><a href="mailto:305260796@qq.com">305260796@qq.com</a></div>
     <div class="contact-meta">
-      <div class="c-card"><div class="t">ACCOUNT</div><div class="v">vhomejay</div></div>
       <div class="c-card"><div class="t">LOCATION</div><div class="v">厦门 / 杭州</div></div>
       <div class="c-card"><div class="t">EDUCATION</div><div class="v">数字媒体艺术 · 大专</div></div>
       <div class="c-card"><div class="t">STATUS</div><div class="v">OPEN TO WORK</div></div>
@@ -596,7 +752,7 @@
 
 <footer>
   <div class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;width:100%">
-    <span>© 2026 VHOMEJAY <span class="dot">·</span> 魏宏捷</span>
+    <span>© 2026 魏宏捷 <span class="dot">·</span> SHOWREEL</span>
     <span>SHOWREEL_SITE — 0 DEPENDENCIES</span>
   </div>
 </footer>
